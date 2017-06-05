@@ -6,6 +6,9 @@ git_source(:github) do |repo_name|
 end
 
 
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'figaro'
+
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'jquery-rails'

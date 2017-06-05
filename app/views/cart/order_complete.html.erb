@@ -1,0 +1,8 @@
+<h2>Thank you for your order!</h2>
+
+<p>
+  Order #<%= @order.id %> will be shipping to you,
+  <%= @order.user.email %>, as soon as possible!
+  <br>
+  The total amount charged to your credit card is $<%= @order.grand_total.to_f.round(2) %>.
+</p>
