@@ -21,7 +21,9 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= product.name %></td>
-        <td><%= image_tag(product.image.url, height: "90", class: "storefront-pics") %></td>
+        <% if product.image.url.nil? == false %>
+         <td><%= image_tag(product.image.url, height: "90", class: "storefront-pics") %></td>
+        <% end %>
         <td><%= number_to_currency product.price %></td>
         <td><%= product.quantity %></td>
         <td><%= product.description %></td>

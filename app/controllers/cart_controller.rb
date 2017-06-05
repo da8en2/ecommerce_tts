@@ -4,7 +4,9 @@ class CartController < ApplicationController
   def add_to_cart
       @order = current_order
 
+
       line_item = @order.line_items.new(product_id: params[:product_id], quantity: params[:quantity])
+
       @order.save
       session[:order_id] = @order.id
 

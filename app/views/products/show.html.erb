@@ -5,10 +5,13 @@
   <%= @product.name %>
 </p>
 
-<p>
-  <strong>Image:</strong>
-  <%= image_tag(@product.image.url, height: "90", class: "storefront-pics") %>
-</p>
+<% if @product.image.url.nil? == false %>
+  <p>
+    <strong>Image:</strong>
+    <%= image_tag(@product.image.url, height: "90", class: "storefront-pics") %>
+  </p>
+<% end %>
+
 
 <p>
   <strong>Price:</strong>
