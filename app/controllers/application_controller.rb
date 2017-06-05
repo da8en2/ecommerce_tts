@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :categories, :brands
 
+  helper_method :current_order
+
   def categories
     @categories = Category.order(:name)
   end
@@ -20,6 +22,14 @@ class ApplicationController < ActionController::Base
 
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :password,
        :password_confirmation, :current_password, :role) }
+  end
+
+  def current_order
+    if !session[:order_id].nil?
+      Order.find(session[:order_id])
+    else
+      Order.new
+    end
   end
 
 end
