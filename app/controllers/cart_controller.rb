@@ -3,18 +3,18 @@ class CartController < ApplicationController
 
   def add_to_cart
       @order = current_order
-
-
-      line_item = @order.line_items.new(product_id: params[:product_id], quantity: params[:quantity])
-
-      @order.save
+      if @order.line_items.exists?(product_id: params[:product_id])
+        updated_quantity = @order.line_items.where(:product_id => params[:product_id]).pluck(:quantity)[0].to_i + params[:quantity].to_i
+        line_item = @order.line_items.find_by(params[:product_id])
+        line_item.quantity = updated_quantity
+      else
+        line_item = @order.line_items.new(product_id: params[:product_id], quantity: params[:quantity])
+        @order.save
+      end
       session[:order_id] = @order.id
-
       line_item.update(line_item_total: (line_item.product.price * line_item.quantity))
-
       redirect_back(fallback_location: root_path)
-  end
-
+    end
 
   def view_order
     @line_items = current_order.line_items
