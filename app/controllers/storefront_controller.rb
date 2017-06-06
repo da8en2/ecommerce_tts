@@ -14,4 +14,8 @@ class StorefrontController < ApplicationController
     @products = Product.where(brand: params[:brand])
     @brand = params[:brand]
   end
+
+  def ajax
+
+  end
 end

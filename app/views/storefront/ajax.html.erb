@@ -1,0 +1,19 @@
+<h1>Ajax Testing 1, 2, 3</h1>
+
+<script type="text/javascript">
+  function loadPosts(){
+    $.getJSON("/products.json", function(data){
+      var html = "";
+      $.each(data, function (index, value){
+	       //alert(data[index].content);
+	       html += "<b><i>" + value.name + " " + value.quantity + "</i></b><br>";
+	       });
+	       // update our div
+	         $("#products_ajax").html(html);
+	       });
+      }
+</script>
+
+<div id="products_ajax">
+  <a href="javascript:loadPosts();">This is where inventory goes</a>
+</div>

@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   get 'branding' => 'storefront#items_by_brand'
 
   resources :products
+
+  get 'ajax' => 'storefront#ajax'
 end
